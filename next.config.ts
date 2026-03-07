@@ -1,11 +1,11 @@
-import NextConfig from 'next'
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'static.vecteezy.com',
+        hostname: 'gw8hy3fdcv.ufs.sh',
         port: '',
         pathname: '/**'
       }

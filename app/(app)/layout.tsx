@@ -3,6 +3,8 @@ import { redirect } from 'next/navigation'
 
 import { authClient } from '@/app/_lib/auth-client'
 
+import { BottomNav } from './_components/BottomNav'
+
 export default async function AppLayout({
   children,
 }: {
@@ -21,5 +23,10 @@ export default async function AppLayout({
     redirect('/auth/sign-in')
   }
 
-  return <>{children}</>
+  return (
+    <div className="flex min-h-screen flex-col pb-20">
+      {children}
+      <BottomNav />
+    </div>
+  )
 }
