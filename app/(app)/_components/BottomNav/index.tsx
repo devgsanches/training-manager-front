@@ -6,33 +6,44 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 const navItems = [
-  { icon: House, href: '/', label: 'Home' },
-  { icon: Calendar, href: '/calendar', label: 'Calendário' },
-  { icon: Sparkles, href: null, label: 'AI' },
-  { icon: BarChart2, href: '/stats', label: 'Estatísticas' },
-  { icon: User, href: '/me', label: 'Perfil' },
+  { icon: House, href: '/', label: 'Home', key: 'home' },
+  { icon: Calendar, href: '/calendar', label: 'Calendário', key: 'calendar' },
+  { icon: Sparkles, href: null, label: 'AI', key: 'ai' },
+  { icon: BarChart2, href: '/stats', label: 'Estatísticas', key: 'stats' },
+  { icon: User, href: '/me', label: 'Perfil', key: 'profile' },
 ] as const
 
 interface NavItem {
   icon: React.ElementType
   label?: string
   href?: string | null
-  onClick?: () => void
+  key: string
 }
 
-export const BottomNav = () => {
+interface BottomNavProps {
+  todayWorkoutHref?: string | null
+}
+
+export const BottomNav = ({ todayWorkoutHref = null }: BottomNavProps) => {
   const pathname = usePathname()
+  const isOnWorkoutDayPage = /^\/workout-plan\/[^/]+\/days\/[^/]+$/.test(pathname)
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-border rounded-t-2xl bg-background py-4">
       <div className="flex h-16 items-center justify-around">
-        {navItems.map(({ icon: Icon, href, label }: NavItem) => {
-          const isActive = href === '/' && pathname === '/'
+        {navItems.map(({ icon: Icon, href, label, key }: NavItem) => {
+          const effectiveHref = key === 'calendar' && todayWorkoutHref ? todayWorkoutHref : href
+          const isActive =
+            key === 'home'
+              ? pathname === '/'
+              : key === 'calendar'
+                ? isOnWorkoutDayPage
+                : false
 
-          return href ? (
+          return effectiveHref ? (
             <Link
-              key={label}
-              href={href}
+              key={key}
+              href={effectiveHref}
               className={cn('flex flex-1 flex-col items-center justify-center gap-1 h-full')}
               aria-label={label}
             >
