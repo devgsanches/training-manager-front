@@ -2,8 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Logo } from "../Logo";
 
 export const Banner = () => (
-  <div className="h-74 relative bg-[url(/banner.jpg)] bg-cover bg-position-[center_65%] bg-no-repeat rounded-b-lg">
-    <div className="absolute bg-black/25 w-full h-full rounded-b-lg"></div>
+  <div className="h-74 relative bg-[url(/banner.jpg)] bg-cover bg-position-[center_65%] bg-no-repeat rounded-b-3xl">
+    <div className="absolute bg-black/25 w-full h-full rounded-b-3xl"></div>
     <div className="flex flex-col justify-between h-full p-5 relative">
       <div className="absolute top-4">
         <Logo />

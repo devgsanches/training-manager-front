@@ -1,8 +1,9 @@
 {
-  "name": "won-games",
+  "name": "training-manager-front",
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "api:generate": "orval",
     "dev": "next dev --webpack",
     "build": "next build",
     "start": "next start",
@@ -35,6 +36,7 @@
     "better-auth": "^1.5.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "dayjs": "1.11.19",
     "lucide-react": "^0.562.0",
     "next": "16.1.1",
     "react": "19.2.3",
@@ -73,6 +75,7 @@
     "husky": "^9",
     "jsdom": "^27.3.0",
     "lint-staged": "^16",
+    "orval": "8.1.0",
     "playwright": "^1.57.0",
     "plop": "^4.0.4",
     "prettier": "^3",
