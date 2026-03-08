@@ -9,6 +9,7 @@ import type { WorkoutDayOutputDto } from "@/app/_lib/api/fetch-generated"
 
 import { Logo } from "@/app/(app)/_components/Logo"
 import { WorkoutDayCard } from "../../_components/WorkoutDayCard"
+import { PlanBanner } from "./_components/PlanBanner"
 
 const WEEKDAY_ORDER = [
   "MONDAY",
@@ -54,37 +55,7 @@ export default async function WorkoutPlanPage({ params }: PageProps) {
 
   return (
     <div className="flex flex-1 flex-col">
-      <header className="relative aspect-16/10 min-h-[200px] overflow-hidden bg-muted">
-        <Image
-          src={headerImageUrl}
-          alt=""
-          fill
-          className="object-cover"
-          sizes="100vw"
-          priority
-        />
-        <div className="absolute inset-0 bg-foreground/40" />
-        <div className="absolute inset-0 flex flex-col justify-between p-5">
-          <div>
-            <Logo />
-          </div>
-          <div className="flex flex-col gap-2">
-            <h1 className="font-heading text-2xl font-bold text-white drop-shadow-sm">
-              Plano de Treino
-            </h1>
-            <div className="flex items-center gap-1.5 self-start rounded-full bg-primary px-3 py-1.5">
-              <Dumbbell
-                className="size-4 text-primary-foreground"
-                strokeWidth={2}
-              />
-              <span className="text-sm font-semibold text-primary-foreground">
-                {plan.name}
-              </span>
-            </div>
-          </div>
-        </div>
-      </header>
-
+      <PlanBanner name={plan.name} />
       <div className="flex flex-col gap-3 p-5">
         {sortedDays.map((day) => (
           <Link
