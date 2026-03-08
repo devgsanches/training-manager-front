@@ -42,7 +42,6 @@ const HomePage = async () => {
 
   const firstName = userName.split(' ')[0]
 
-
   return (
     <>
       <Banner userName={firstName} todayWorkoutPlanId={activeWorkoutPlanId} />
@@ -80,12 +79,12 @@ const HomePage = async () => {
           {!todayWorkoutDay ? (
             <div className="flex aspect-16/10 flex-col items-center justify-center gap-2 rounded-xl border border-border bg-muted px-6 text-center shadow-sm">
               <p className="font-heading text-base font-semibold text-foreground">
-                Você ainda não tem um treino de hoje.
+                Você não tem um treino para hoje.
               </p>
               <p className="text-sm text-muted-foreground">
                 Crie um novo plano no <span className="inline-flex items-center rounded-md bg-primary px-2 py-0.5 text-xs font-semibold text-primary-foreground">
                   AI Personal
-                </span> para treinar hoje.
+                </span> caso queira treinar hoje.
               </p>
             </div>
           ) : !todayWorkoutDay.isRest ? (

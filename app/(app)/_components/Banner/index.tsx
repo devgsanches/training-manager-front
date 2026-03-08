@@ -7,12 +7,13 @@ type BannerProps = {
   todayWorkoutPlanId?: string
 };
 
+
 export const Banner = async ({ userName, todayWorkoutPlanId }: BannerProps) => {
 
   return (
     <div className="h-74 relative bg-[url(/banner.jpg)] bg-cover bg-position-[center_65%] bg-no-repeat rounded-b-3xl" >
       <div className="absolute bg-black/25 w-full h-full rounded-b-3xl"></div>
-      <div className="flex flex-col justify-between h-full p-5 relative">
+      <div className="flex flex-col justify-between h-full p-4 relative">
         <div className="absolute top-4">
           <Logo />
         </div>
@@ -28,6 +29,6 @@ export const Banner = async ({ userName, todayWorkoutPlanId }: BannerProps) => {
           </div>
         </div>
       </div>
-    </div >
+    </div>
   )
 }

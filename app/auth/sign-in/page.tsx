@@ -1,8 +1,10 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 
 import { authClient } from '@/app/_lib/auth-client'
+import { SignInWithEmailForm } from '../_components/sign-in-with-email-form'
 import { SignInWithGoogle } from '../_components/sign-in-with-google'
 
 async function SignInPage() {
@@ -18,20 +20,32 @@ async function SignInPage() {
   if (session.data?.user) redirect('/')
 
   return (
-    <div className="h-screen flex flex-col bg-[url(/sign-in.png)] bg-position-[45%_-45px] bg-no-repeat bg-cover relative justify-between">
-      {/* <div className="absolute top-0 left-0 w-full h-full bg-black/10" /> */}
-      <div className="relative flex justify-center">
-        <Image src="/Fit.ai.svg" alt="Logo" width={85} height={39} className="mt-12" />
+    <div className="h-dvh min-h-dvh flex flex-col justify-end items-center bg-primary bg-[url(/sign-in.png)] bg-position-[45%_-220px] bg-no-repeat bg-cover relative overflow-hidden">
+      <div className="absolute flex justify-center top-0">
+        <Image src="/Fit.ai.svg" alt="Logo" width={85} height={39} className="mt-8" />
       </div>
 
-      <div className="bg-primary h-82.25 rounded-t-[20px] p-5 flex justify-center">
-        <div className="flex flex-col justify-between mt-8 items-center">
+      <div className="bg-primary h-auto rounded-t-[20px] p-5 flex justify-center overflow-y-auto w-full">
+        <div className="flex flex-col mt-8 items-center w-full max-w-sm">
           <div className="flex flex-col gap-6 items-center">
             <p className="font-semibold text-3xl font-main max-w-80 text-center text-white">O app que vai transformar a forma como você treina.
             </p>
-
+            <SignInWithEmailForm />
           </div>
-          <SignInWithGoogle />
+          <div className="flex w-full max-w-80 flex-col gap-4">
+            <div className="flex items-center gap-4 w-full">
+              <div className="flex-1 h-px bg-primary-foreground/30" />
+              <span className="text-primary-foreground/70 text-sm">ou</span>
+              <div className="flex-1 h-px bg-primary-foreground/30" />
+            </div>
+            <SignInWithGoogle variant="secondary" />
+            <p className="text-center text-sm text-primary-foreground/90">
+              Não tem uma conta?{' '}
+              <Link href="/auth/sign-up" className="underline hover:text-primary-foreground">
+                Cadastre-se
+              </Link>
+            </p>
+          </div>
           <p className="font-light text-white text-center text-xs">©2026 Copyright FIT.AI. Todos os direitos reservados</p>
         </div>
       </div>

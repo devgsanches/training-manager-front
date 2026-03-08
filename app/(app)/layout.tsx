@@ -28,12 +28,7 @@ export default async function AppLayout({
   const today = dayjs().format('YYYY-MM-DD')
   const homeData = await getHomeData(today)
 
-  const todayWorkoutHref =
-    homeData.status === 200 &&
-    homeData.data.todayWorkoutDay &&
-    !homeData.data.todayWorkoutDay.isRest
-      ? `/workout-plan/${homeData.data.activeWorkoutPlanId}/days/${homeData.data.todayWorkoutDay.id}`
-      : null
+  const todayWorkoutHref = homeData.status === 200 && homeData.data.activeWorkoutPlanId ? `/workout-plan/${homeData.data.activeWorkoutPlanId}` : null
 
   return (
     <div className="flex min-h-screen flex-col pb-20">
