@@ -42,6 +42,10 @@ const HomePage = async () => {
 
   const firstName = userName.split(' ')[0]
 
+  console.log({
+    consistencyByDay
+  })
+
   return (
     <>
       <Banner userName={firstName} todayWorkoutPlanId={activeWorkoutPlanId} />

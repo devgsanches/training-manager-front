@@ -1,15 +1,18 @@
 import dayjs from "dayjs"
+import isoWeek from "dayjs/plugin/isoWeek"
 
 import type { HomeResponseConsistencyByDay } from "@/app/_lib/api/fetch-generated"
 
+dayjs.extend(isoWeek)
+
 const WEEK_LABELS = [
-  { label: "S", dayOffset: 1 },
-  { label: "T", dayOffset: 2 },
+  { label: "S", dayOffset: 0 },
+  { label: "T", dayOffset: 1 },
+  { label: "Q", dayOffset: 2 },
   { label: "Q", dayOffset: 3 },
-  { label: "Q", dayOffset: 4 },
+  { label: "S", dayOffset: 4 },
   { label: "S", dayOffset: 5 },
-  { label: "S", dayOffset: 6 },
-  { label: "D", dayOffset: 0 },
+  { label: "D", dayOffset: 6 },
 ] as const
 
 type ConsistencyState = "completed" | "started" | "today" | "none"
@@ -35,13 +38,13 @@ export const WeekConsistency = ({
   consistencyByDay,
   currentDate,
 }: WeekConsistencyProps) => {
-  const weekStart = dayjs(currentDate).startOf("week")
+  const weekStart = dayjs(currentDate).startOf("isoWeek")
   const todayKey = dayjs(currentDate).format("YYYY-MM-DD")
 
   return (
     <div className="flex gap-2 h-full">
       {WEEK_LABELS.map(({ label, dayOffset }, index) => {
-        const date = weekStart.add(dayOffset === 0 ? 0 : dayOffset, "day")
+        const date = weekStart.add(dayOffset, "day")
         const dateKey = date.format("YYYY-MM-DD")
         const isToday = dateKey === todayKey
         const state = getConsistencyState(consistencyByDay, dateKey, isToday)
