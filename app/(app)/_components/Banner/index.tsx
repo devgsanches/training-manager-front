@@ -25,10 +25,11 @@ export const Banner = async ({ userName, todayWorkoutPlanId }: BannerProps) => {
             <p className="text-sm text-primary-foreground/90">Bora treinar hoje?</p>
           </div>
           <div className="flex items-end font-main">
-            <Link href={`/workout-plan/${todayWorkoutPlanId}`} className="text-white cursor-pointer font-semibold rounded-full text-sm bg-primary px-4 py-2">Bora!</Link>
+            {todayWorkoutPlanId && <Link href={`/workout-plan/${todayWorkoutPlanId}`} className="text-white cursor-pointer font-semibold rounded-full text-sm bg-primary px-4 py-2">Bora!</Link>
+            }
           </div>
         </div>
       </div>
-    </div>
+    </div >
   )
 }

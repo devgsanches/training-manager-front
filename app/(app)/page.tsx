@@ -5,6 +5,7 @@ import { getHomeData } from '@/app/_lib/api/fetch-generated'
 import { authClient } from '@/app/_lib/auth-client'
 
 import { Banner } from './_components/Banner'
+import { EmptyWorkoutPlan } from './_components/EmptyWorkoutPlan'
 import { StreakCard } from './_components/StreakCard'
 import { WeekConsistency } from './_components/WeekConsistency'
 import { WorkoutDayCard } from './_components/WorkoutDayCard'
@@ -20,7 +21,7 @@ const HomePage = async () => {
     },
   })
 
-  const userName = session.data?.user?.name ?? 'Atleta'
+  const userName = session.data?.user?.name.split(' ')[0] ?? 'Atleta'
   const today = dayjs().format('YYYY-MM-DD')
   const homeData = await getHomeData(today)
 
@@ -28,11 +29,7 @@ const HomePage = async () => {
     return (
       <>
         <Banner userName={userName} />
-        <div className="flex flex-1 flex-col gap-6 p-5">
-          <p className="text-center text-muted-foreground">
-            Você ainda não tem um plano de treino ativo.
-          </p>
-        </div>
+        <EmptyWorkoutPlan />
       </>
     )
   }
@@ -41,10 +38,6 @@ const HomePage = async () => {
   const { activeWorkoutPlanId, todayWorkoutDay, workoutStreak, consistencyByDay } = data
 
   const firstName = userName.split(' ')[0]
-
-  console.log({
-    consistencyByDay
-  })
 
   return (
     <>
