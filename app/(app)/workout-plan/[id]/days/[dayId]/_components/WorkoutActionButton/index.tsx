@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import type { WorkoutDaySessionOutputDto } from "@/app/_lib/api/fetch-generated"
 
 import { handleStartWorkout, handleCompleteWorkout } from "@/app/(app)/workout-plan/[id]/days/[dayId]/actions"
+import { cn } from "@/lib/utils"
 
 type SessionState = "completed" | "in_progress" | "none"
 
@@ -46,7 +47,7 @@ export const WorkoutActionButton = ({
     return (
       <Button
         variant="ghost"
-        className={placement === "below" ? "w-full" : "shrink-0"}
+        className={cn(placement === "below" ? "w-full" : "shrink-0", 'text-green-500')}
       >
         Concluído!
       </Button>

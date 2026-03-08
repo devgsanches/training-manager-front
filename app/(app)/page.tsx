@@ -38,17 +38,14 @@ const HomePage = async () => {
   }
 
   const { data } = homeData
-  const { todayWorkoutDay, workoutStreak, consistencyByDay } = data
+  const { activeWorkoutPlanId, todayWorkoutDay, workoutStreak, consistencyByDay } = data
 
   const firstName = userName.split(' ')[0]
 
-  console.log({
-    consistencyByDay,
-  });
 
   return (
     <>
-      <Banner userName={firstName} />
+      <Banner userName={firstName} todayWorkoutPlanId={activeWorkoutPlanId} />
       <main className="flex flex-1 flex-col gap-6 p-5">
         <section>
           <div className="mb-3 flex items-center justify-between">
