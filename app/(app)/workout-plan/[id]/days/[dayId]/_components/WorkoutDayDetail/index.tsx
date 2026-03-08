@@ -75,8 +75,7 @@ export const WorkoutDayDetail = ({
             </span>
           </div>
         )}
-        <div className="absolute inset-0 bg-foreground/20" />
-        <div className="absolute left-3 top-3 flex items-center gap-1.5 rounded-lg bg-black/30 px-2 py-1">
+        <div className="absolute left-3 top-3 flex items-center gap-1.5 rounded-lg px-2 py-1 bg-background/16 ">
           <Calendar className="size-3.5 text-white/90" strokeWidth={2} />
           <span className="text-xs font-semibold text-white">{dayLabel}</span>
         </div>

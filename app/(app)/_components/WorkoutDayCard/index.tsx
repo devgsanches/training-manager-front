@@ -38,7 +38,7 @@ export const WorkoutDayCard = ({ workoutDay }: WorkoutDayCardProps) => {
     return (
       <div className="overflow-hidden rounded-xl border border-border bg-background shadow-sm dark:bg-background max-h-27.5 h-full">
         <div className="flex flex-col p-3 gap-5">
-          <div className="flex items-center gap-1.5 self-start rounded-lg bg-muted-foreground/16 px-2 py-1 dark:bg-muted-foreground/16">
+          <div className="flex items-center gap-1.5 self-start rounded-lg bg-muted-foreground/16 px-2 py-1">
             <Calendar className="size-3.5 text-foreground" strokeWidth={2} />
             <span className="text-xs font-semibold text-foreground">{dayLabel}</span>
           </div>
