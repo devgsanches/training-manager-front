@@ -28,6 +28,8 @@ interface WorkoutActionButtonProps {
   sessions: WorkoutDaySessionOutputDto[]
   /** "card" = Iniciar/Concluído no card; "below" = Marcar concluído abaixo da lista */
   placement: "card" | "below"
+  /** Só libera o botão "Iniciar treino" quando o dia atual é o dia do treino */
+  canStartWorkout?: boolean
 }
 
 export const WorkoutActionButton = ({
@@ -35,6 +37,7 @@ export const WorkoutActionButton = ({
   dayId,
   sessions,
   placement,
+  canStartWorkout = true,
 }: WorkoutActionButtonProps) => {
   const [isPending, startTransition] = useTransition()
   const { state, sessionId } = getSessionState(sessions)
@@ -74,7 +77,7 @@ export const WorkoutActionButton = ({
   return (
     <Button
       className={placement === "below" ? "w-full bg-primary text-primary-foreground" : "shrink-0 bg-primary text-primary-foreground rounded-full"}
-      disabled={isPending}
+      disabled={isPending || !canStartWorkout}
       onClick={() => {
         startTransition(async () => {
           await handleStartWorkout(planId, dayId)

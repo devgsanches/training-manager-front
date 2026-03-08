@@ -1,6 +1,5 @@
 import { Logo } from "../Logo";
 import Link from "next/link";
-import { getWorkoutPlan } from "@/app/_lib/api/workout-plan";
 
 type BannerProps = {
   userName?: string;
@@ -17,8 +16,6 @@ export const Banner = async ({ userName, todayWorkoutPlanId }: BannerProps) => {
         <div className="absolute top-4">
           <Logo />
         </div>
-
-
         <div className="h-full flex items-end justify-between mb-10">
           <div className="flex flex-col text-white font-main">
             <p className="text-2xl font-semibold truncate">Olá, {userName ?? 'usuário'}</p>

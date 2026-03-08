@@ -61,7 +61,7 @@ export default async function WorkoutDayPage({ params }: PageProps) {
     <div className="flex flex-1 flex-col">
       <Topbar title={title} />
       <div className="p-5">
-        <WorkoutDayDetail workoutDay={data} planId={planId} />
+        <WorkoutDayDetail workoutDay={data} planId={planId} isToday={isToday} />
       </div>
       <div className="flex flex-1 flex-col gap-4 p-5">
         <div className="flex flex-col gap-2">

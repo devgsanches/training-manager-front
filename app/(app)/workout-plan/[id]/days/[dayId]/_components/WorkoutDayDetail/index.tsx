@@ -34,11 +34,13 @@ function getSessionState(sessions: WorkoutDaySessionOutputDto[]) {
 interface WorkoutDayDetailProps {
   workoutDay: GetWorkoutDayOutputDto
   planId: string
+  isToday?: boolean
 }
 
 export const WorkoutDayDetail = ({
   workoutDay,
   planId,
+  isToday = false,
 }: WorkoutDayDetailProps) => {
   const {
     name,
@@ -102,6 +104,7 @@ export const WorkoutDayDetail = ({
                 dayId={workoutDay.id}
                 sessions={sessions}
                 placement="card"
+                canStartWorkout={isToday}
               />
             </div>
           )}
