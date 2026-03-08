@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   title: 'Fit AI',
   description: 'O app que vai transformar a forma como você treina.',
   icons: {
-    icon: '/icons/favicon.png',
+    icon: '/icons/favicon_rounded.png',
   },
 }
 
