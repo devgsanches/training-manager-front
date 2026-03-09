@@ -19,7 +19,9 @@ export const EmptyWorkoutPlan = () => {
         </p>
       </div>
       <Button asChild size="lg" className="gap-2 rounded-full font-semibold">
-        <Link href="/calendar">
+        <Link
+          href={`/?chat_open=true&chat_initial_message=${encodeURIComponent('Monte meu plano de treino')}`}
+        >
           <CalendarPlus className="size-5" />
           Criar plano de treino
         </Link>
