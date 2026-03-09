@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -31,6 +32,7 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>
 
 export function SignInWithEmailForm() {
+  const router = useRouter()
   const [submitError, setSubmitError] = useState<string | null>(null)
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -55,6 +57,8 @@ export function SignInWithEmailForm() {
 
     if (error) {
       setSubmitError(error.message ?? 'Erro ao fazer login. Verifique suas credenciais.')
+    } else {
+      router.push('/')
     }
   }
 
