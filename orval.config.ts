@@ -14,7 +14,7 @@ export default defineConfig({
   //     },
   //   },
   //   input: {
-  //     target: `${process.env.NEXT_PUBLIC_API_URL}/swagger.json`,
+  //     target: `${env.NEXT_PUBLIC_API_URL}/swagger.json`,
   //     filters: {
   //       mode: "exclude",
   //       tags: ["default"],
@@ -22,7 +22,7 @@ export default defineConfig({
   //   },
   // },
   fetch: {
-    input: `${process.env.NEXT_PUBLIC_API_URL}/openapi.json`,
+    input: `${env.NEXT_PUBLIC_API_URL}/openapi.json`,
     output: {
       target: "./app/_lib/api/fetch-generated/index.ts",
       client: "fetch",

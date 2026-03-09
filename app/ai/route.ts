@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers'
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3333'
+const API_URL = env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3333'
 
 export async function POST(request: Request) {
   const cookieStore = await cookies()
