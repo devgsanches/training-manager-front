@@ -3,6 +3,8 @@ import { redirect } from 'next/navigation'
 
 import { getHomeData } from '@/app/_lib/api/fetch-generated'
 import { authClient } from '@/app/_lib/auth-client'
+
+export const dynamic = 'force-dynamic'
 import dayjs from 'dayjs'
 
 import { BottomNav } from './_components/BottomNav'
