@@ -40,7 +40,9 @@ export const BottomNav = ({ todayWorkoutHref = null }: BottomNavProps) => {
                 ? isOnWorkoutDayPage
                 : key === 'stats'
                   ? pathname === '/stats'
-                  : false
+                  : key === 'profile'
+                    ? pathname === '/me'
+                    : false
 
           return effectiveHref ? (
             <Link

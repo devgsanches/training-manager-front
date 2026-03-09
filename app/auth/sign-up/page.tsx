@@ -4,10 +4,10 @@ import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 
 import { authClient } from '@/app/_lib/auth-client'
-import { SignInWithEmailForm } from '../_components/sign-in-with-email-form'
+import { SignUpWithEmailForm } from '../_components/sign-up-with-email-form'
 import { SignInWithGoogle } from '../_components/sign-in-with-google'
 
-async function SignInPage() {
+async function SignUpPage() {
   const headersList = await headers()
   const session = await authClient.getSession({
     fetchOptions: {
@@ -28,9 +28,9 @@ async function SignInPage() {
       <div className="bg-primary h-auto rounded-t-[20px] p-5 flex justify-center overflow-y-auto w-full">
         <div className="flex flex-col mt-8 items-center w-full max-w-sm">
           <div className="flex flex-col gap-6 items-center">
-            <p className="font-semibold text-3xl font-main max-w-80 text-center text-white">O app que vai transformar a forma como você treina.
+            <p className="font-semibold text-3xl font-main max-w-80 text-center text-white">Crie sua conta e comece a treinar.
             </p>
-            <SignInWithEmailForm />
+            <SignUpWithEmailForm />
           </div>
           <div className="flex w-full max-w-80 flex-col gap-4">
             <div className="flex items-center gap-4 w-full">
@@ -40,9 +40,9 @@ async function SignInPage() {
             </div>
             <SignInWithGoogle variant="secondary" />
             <p className="text-center text-sm text-primary-foreground/90">
-              Não tem uma conta?{' '}
-              <Link href="/auth/sign-up" className="underline hover:text-primary-foreground">
-                Cadastre-se
+              Já tem uma conta?{' '}
+              <Link href="/auth/sign-in" className="underline hover:text-primary-foreground">
+                Entrar
               </Link>
             </p>
           </div>
@@ -53,4 +53,4 @@ async function SignInPage() {
   )
 }
 
-export default SignInPage
+export default SignUpPage
