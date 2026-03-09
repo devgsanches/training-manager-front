@@ -1,4 +1,7 @@
+'use client'
+
 import { HelpCircle, Zap } from "lucide-react"
+import { parseAsBoolean, parseAsString, useQueryStates } from "nuqs"
 
 import type { WorkoutDayExerciseOutputDto } from "@/app/_lib/api/fetch-generated"
 
@@ -7,6 +10,10 @@ interface ExerciseCardProps {
 }
 
 export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
+  const [, setChatParams] = useQueryStates({
+    chat_open: parseAsBoolean.withDefault(false),
+    chat_initial_message: parseAsString,
+  })
   const { name, sets, reps, restTimeInSeconds } = exercise
 
   return (
@@ -28,6 +35,12 @@ export const ExerciseCard = ({ exercise }: ExerciseCardProps) => {
       </div>
       <button
         type="button"
+        onClick={() =>
+          setChatParams({
+            chat_open: true,
+            chat_initial_message: `Como executar o exercício ${name} corretamente?`,
+          })
+        }
         className="flex size-8 shrink-0 items-center justify-center rounded-full bg-muted text-muted-foreground transition-colors hover:bg-muted/80"
         aria-label="Mais informações"
       >

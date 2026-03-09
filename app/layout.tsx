@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Poppins, Space_Grotesk, Inter, Inter_Tight } from 'next/font/google'
+import { NuqsAdapter } from 'nuqs/adapters/next/app'
 import './globals.css'
 
 const poppins = Poppins({
@@ -44,7 +45,9 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} ${spaceGrotesk.variable} ${interTight.variable} ${inter.variable} antialiased min-h-screen flex flex-col overflow-x-hidden`}
       >
-        <main className="flex-1">{children}</main>
+        <NuqsAdapter>
+          <main className="flex-1">{children}</main>
+        </NuqsAdapter>
       </body>
     </html>
   )

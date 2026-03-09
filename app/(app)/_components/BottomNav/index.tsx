@@ -4,11 +4,12 @@ import { cn } from '@/lib/utils'
 import { BarChart2, Calendar, House, Sparkles, User } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { parseAsBoolean, useQueryState } from 'nuqs'
 
 const navItems = [
   { icon: House, href: '/', label: 'Home', key: 'home' },
   { icon: Calendar, href: '/', label: 'Calendário', key: 'calendar' },
-  { icon: Sparkles, href: null, label: 'AI', key: 'ai' },
+  { icon: Sparkles, href: null, label: 'AI', key: 'ai' as const },
   { icon: BarChart2, href: '/stats', label: 'Estatísticas', key: 'stats' },
   { icon: User, href: '/me', label: 'Perfil', key: 'profile' },
 ] as const
@@ -26,6 +27,10 @@ interface BottomNavProps {
 
 export const BottomNav = ({ todayWorkoutHref = null }: BottomNavProps) => {
   const pathname = usePathname()
+  const [, setChatOpen] = useQueryState(
+    'chat_open',
+    parseAsBoolean.withDefault(false),
+  )
   const isOnWorkoutDayPage = /^\/workout-plan\/[^/]+\/days\/[^/]+$/.test(pathname)
 
   return (
@@ -44,6 +49,24 @@ export const BottomNav = ({ todayWorkoutHref = null }: BottomNavProps) => {
                     ? pathname === '/me'
                     : false
 
+          if (key === 'ai') {
+            return (
+              <button
+                key={key}
+                type="button"
+                onClick={() => setChatOpen(true)}
+                className={cn(
+                  'flex flex-1 flex-col items-center justify-center gap-1 h-full',
+                )}
+                aria-label={label}
+              >
+                <div className="bg-primary text-primary-foreground rounded-full p-4.5 -mt-2.5">
+                  <Icon className="size-6" strokeWidth={2} />
+                </div>
+              </button>
+            )
+          }
+
           return effectiveHref ? (
             <Link
               key={key}
@@ -51,25 +74,22 @@ export const BottomNav = ({ todayWorkoutHref = null }: BottomNavProps) => {
               className={cn('flex flex-1 flex-col items-center justify-center gap-1 h-full')}
               aria-label={label}
             >
-              <span
-                className={`flex items-center justify-center`}
-              >
+              <span className="flex items-center justify-center">
                 <Icon
-                  className={`size-6 ${isActive ? 'text-foreground' : 'text-muted-foreground '}`}
+                  className={`size-6 ${isActive ? 'text-foreground' : 'text-muted-foreground'}`}
                   strokeWidth={2}
                 />
               </span>
             </Link>
           ) : (
             <button
-              key={label}
+              key={key}
               type="button"
-              className={cn('flex  flex-1 flex-col items-center justify-center gap-1 p-4 cursor-default text-muted-foreground'
-              )}
+              className="flex flex-1 flex-col items-center justify-center gap-1 p-4 cursor-default text-muted-foreground"
               aria-label={label}
               disabled
             >
-              <div className={cn('', label === 'AI' ? 'bg-primary text-muted rounded-full p-4.5 -mt-2.5' : '')}><Icon className="size-6" strokeWidth={2} /> </div>
+              <Icon className="size-6" strokeWidth={2} />
             </button>
           )
         })}

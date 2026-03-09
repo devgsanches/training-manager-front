@@ -52,7 +52,7 @@ const MePage = async () => {
       <header className="p-4">
         <Logo black />
       </header>
-      <main className="flex flex-1 flex-col gap-6 px-5 pb-6">
+      <main className="flex flex-1 flex-col gap-6 px-5 py-6">
         <section className="flex items-center gap-4">
           <div className="relative size-16 shrink-0 overflow-hidden rounded-full bg-muted">
             {userImage ? (

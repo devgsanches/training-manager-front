@@ -9,9 +9,9 @@ export const StatsStreakCard = ({ count }: StatsStreakCardProps) => {
 
   return (
     <div
-      className={`flex flex-col items-center justify-center gap-2 rounded-2xl p-6 min-h-[210px] w-full ${isZero
+      className={`flex flex-col items-center justify-center gap-2 rounded-2xl p-6 min-h-[210px] w-full overflow-hidden ${isZero
         ? 'bg-linear-to-b from-[#2d2d2d] to-[#1a1a1a]'
-        : 'bg-linear-to-r from-[#ff9944] via-[#f97316] to-[#b91c1c]'
+        : "bg-[url('/stats-banner.png')] bg-cover bg-center bg-no-repeat"
         }`}
     >
       <div
@@ -20,7 +20,7 @@ export const StatsStreakCard = ({ count }: StatsStreakCardProps) => {
       >
         <Flame
           className="size-10 text-transparent"
-          fill={isZero ? '#94a3b8' : '#F06100'}
+          fill={isZero ? '#fff' : '#F06100'}
         />
       </div>
       <span className="font-heading text-5xl font-bold text-white">

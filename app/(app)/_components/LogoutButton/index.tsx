@@ -19,7 +19,7 @@ export const LogoutButton = () => {
     <Button
       type="button"
       variant="ghost"
-      className="flex items-center gap-2 text-destructive hover:bg-destructive/10 hover:text-destructive"
+      className="flex items-center gap-2 text-destructive hover:bg-destructive/10 hover:text-destructive text-base"
       onClick={handleSignOut}
     >
       Sair da conta

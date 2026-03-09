@@ -6,6 +6,7 @@ import { authClient } from '@/app/_lib/auth-client'
 import dayjs from 'dayjs'
 
 import { BottomNav } from './_components/BottomNav'
+import { ChatDrawer } from './_components/ChatDrawer'
 
 export default async function AppLayout({
   children,
@@ -34,6 +35,7 @@ export default async function AppLayout({
     <div className="flex min-h-screen flex-col pb-20">
       {children}
       <BottomNav todayWorkoutHref={todayWorkoutHref} />
+      <ChatDrawer />
     </div>
   )
 }

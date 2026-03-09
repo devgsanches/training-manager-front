@@ -11,7 +11,7 @@ const StatsPage = async () => {
   const today = dayjs()
   const from = today.subtract(3, 'month').startOf('month').format('YYYY-MM-DD')
   const to = today.format('YYYY-MM-DD')
-  const timezoneOffset = -new Date().getTimezoneOffset()
+  const timezoneOffset = 0
 
   const statsResponse = await getStats({ from, to, timezoneOffset })
 
