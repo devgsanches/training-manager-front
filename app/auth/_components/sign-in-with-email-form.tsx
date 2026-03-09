@@ -42,8 +42,8 @@ export function SignInWithEmailForm() {
 
   const onSubmit = async (values: FormValues) => {
     setSubmitError(null)
-    const callbackURL = env.NEXT_PUBLIC_BASE_URL
-      ? `${env.NEXT_PUBLIC_BASE_URL}/`
+    const callbackURL = process.env.NEXT_PUBLIC_BASE_URL
+      ? `${process.env.NEXT_PUBLIC_BASE_URL}/`
       : '/'
 
     const { error } = await authClient.signIn.email({

@@ -22,7 +22,7 @@ export default defineConfig({
   //   },
   // },
   fetch: {
-    input: `${env.NEXT_PUBLIC_API_URL}/openapi.json`,
+    input: `${process.env.NEXT_PUBLIC_API_URL}/openapi.json`,
     output: {
       target: "./app/_lib/api/fetch-generated/index.ts",
       client: "fetch",
