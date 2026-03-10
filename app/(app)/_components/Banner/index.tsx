@@ -1,18 +1,26 @@
-import { Logo } from "../Logo";
-import Link from "next/link";
+import Image from 'next/image'
+import Link from 'next/link'
+
+import { Logo } from '../Logo'
 
 type BannerProps = {
-  userName?: string;
+  userName?: string
   todayWorkoutPlanId?: string
-};
-
+}
 
 export const Banner = async ({ userName, todayWorkoutPlanId }: BannerProps) => {
-
   return (
-    <div className="h-74 relative bg-[url(/banner.jpg)] bg-cover bg-position-[center_65%] bg-no-repeat rounded-b-3xl" >
-      <div className="absolute bg-black/25 w-full h-full rounded-b-3xl"></div>
-      <div className="flex flex-col justify-between h-full p-4 relative">
+    <div className="relative h-74 overflow-hidden rounded-b-3xl">
+      <Image
+        src="/banner.jpg"
+        alt=""
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover object-[center_65%]"
+      />
+      <div className="absolute inset-0 bg-black/25" />
+      <div className="relative flex h-full flex-col justify-between p-4">
         <div className="absolute top-4">
           <Logo />
         </div>
@@ -27,6 +35,6 @@ export const Banner = async ({ userName, todayWorkoutPlanId }: BannerProps) => {
           </div>
         </div>
       </div>
-    </div >
+    </div>
   )
 }

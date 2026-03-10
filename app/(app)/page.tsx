@@ -3,13 +3,13 @@ import Link from 'next/link'
 
 import { getHomeData } from '@/app/_lib/api/fetch-generated'
 import { authClient } from '@/app/_lib/auth-client'
+import { getTodayInUserTimezone } from '@/app/_lib/timezone'
 
 import { Banner } from './_components/Banner'
 import { EmptyWorkoutPlan } from './_components/EmptyWorkoutPlan'
 import { StreakCard } from './_components/StreakCard'
 import { WeekConsistency } from './_components/WeekConsistency'
 import { WorkoutDayCard } from './_components/WorkoutDayCard'
-import dayjs from 'dayjs'
 
 const HomePage = async () => {
   const headersList = await headers()
@@ -22,7 +22,7 @@ const HomePage = async () => {
   })
 
   const userName = session.data?.user?.name.split(' ')[0] ?? 'Atleta'
-  const today = dayjs().format('YYYY-MM-DD')
+  const today = await getTodayInUserTimezone()
   const homeData = await getHomeData(today)
 
   if (homeData.status !== 200) {

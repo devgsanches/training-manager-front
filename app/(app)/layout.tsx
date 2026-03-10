@@ -3,8 +3,7 @@ import { redirect } from 'next/navigation'
 
 import { getHomeData } from '@/app/_lib/api/fetch-generated'
 import { authClient } from '@/app/_lib/auth-client'
-
-import dayjs from 'dayjs'
+import { getTodayInUserTimezone } from '@/app/_lib/timezone'
 
 import { BottomNav } from './_components/BottomNav'
 import { ChatDrawer } from './_components/ChatDrawer'
@@ -27,7 +26,7 @@ export default async function AppLayout({
     redirect('/auth/sign-in')
   }
 
-  const today = dayjs().format('YYYY-MM-DD')
+  const today = await getTodayInUserTimezone()
   const homeData = await getHomeData(today)
 
   const todayWorkoutHref = homeData.status === 200 && homeData.data.activeWorkoutPlanId ? `/workout-plan/${homeData.data.activeWorkoutPlanId}` : null

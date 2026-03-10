@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { Flame } from 'lucide-react'
 
 interface StatsStreakCardProps {
@@ -9,13 +10,22 @@ export const StatsStreakCard = ({ count }: StatsStreakCardProps) => {
 
   return (
     <div
-      className={`flex flex-col items-center justify-center gap-2 rounded-2xl p-6 min-h-[210px] w-full overflow-hidden ${isZero
+      className={`relative flex flex-col items-center justify-center gap-2 overflow-hidden rounded-2xl p-6 min-h-[210px] w-full ${isZero
         ? 'bg-linear-to-b from-[#2d2d2d] to-[#1a1a1a]'
-        : "bg-[url('/stats-banner.png')] bg-cover bg-center bg-no-repeat"
+        : ''
         }`}
     >
+      {!isZero && (
+        <Image
+          src="/stats-banner.png"
+          alt=""
+          fill
+          sizes="(max-width: 768px) 100vw, 400px"
+          className="object-cover object-center"
+        />
+      )}
       <div
-        className={`flex size-14 items-center justify-center rounded-full border border-white/30 ${isZero ? 'bg-white/10' : 'bg-[#ffb380]/40'
+        className={`relative z-10 flex size-14 items-center justify-center rounded-full border border-white/30 ${isZero ? 'bg-white/10' : 'bg-[#ffb380]/40'
           }`}
       >
         <Flame
@@ -23,11 +33,11 @@ export const StatsStreakCard = ({ count }: StatsStreakCardProps) => {
           fill={isZero ? '#fff' : '#F06100'}
         />
       </div>
-      <span className="font-heading text-5xl font-bold text-white">
+      <span className="relative z-10 font-heading text-5xl font-bold text-white">
         {count} {count === 1 ? 'dia' : 'dias'}
       </span>
       <span
-        className={`text-base font-light ${isZero ? 'text-white/80' : 'text-white/90'}`}
+        className={`relative z-10 text-base font-light ${isZero ? 'text-white/80' : 'text-white/90'}`}
       >
         Sequência Atual
       </span>

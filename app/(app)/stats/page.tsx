@@ -1,17 +1,27 @@
 import dayjs from 'dayjs'
+import utc from 'dayjs/plugin/utc'
 
 import { getStats } from '@/app/_lib/api/fetch-generated'
+import {
+  getTodayInUserTimezone,
+  getTimezoneOffsetMinutes,
+} from '@/app/_lib/timezone'
 
 import { ConsistencyHeatmap } from '../_components/ConsistencyHeatmap'
 import { Logo } from '../_components/Logo'
 import { StatsCards } from '../_components/StatsCards'
 import { StatsStreakCard } from '../_components/StatsStreakCard'
 
+dayjs.extend(utc)
+
 const StatsPage = async () => {
-  const today = dayjs()
+  const [todayStr, timezoneOffset] = await Promise.all([
+    getTodayInUserTimezone(),
+    getTimezoneOffsetMinutes(),
+  ])
+  const today = dayjs.utc(todayStr).utcOffset(timezoneOffset)
   const from = today.subtract(3, 'month').startOf('month').format('YYYY-MM-DD')
-  const to = today.format('YYYY-MM-DD')
-  const timezoneOffset = 0
+  const to = todayStr
 
   const statsResponse = await getStats({ from, to, timezoneOffset })
 

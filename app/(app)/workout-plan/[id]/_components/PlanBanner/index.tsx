@@ -1,15 +1,24 @@
-import { Logo } from "@/app/(app)/_components/Logo";
-import { Badge } from "@/components/ui/badge";
-import { cn } from "@/lib/utils";
-import { Goal } from "lucide-react";
+import Image from 'next/image'
+
+import { Logo } from '@/app/(app)/_components/Logo'
+import { Badge } from '@/components/ui/badge'
+import { cn } from '@/lib/utils'
+import { Goal } from 'lucide-react'
 
 type PlanBannerProps = {
-  name: string;
-};
+  name: string
+}
 
 export const PlanBanner = ({ name }: PlanBannerProps) => (
-  <div className={cn('h-74 relative bg-[url(/plan-banner.png)] bg-cover bg-position-[center_65%] bg-no-repeat rounded-b-3xl ')}>
-    <div className="flex h-full flex-col justify-between p-4">
+  <div className={cn('relative h-74 overflow-hidden rounded-b-3xl')}>
+    <Image
+      src="/plan-banner.png"
+      alt=""
+      fill
+      sizes="100vw"
+      className="object-cover object-[center_65%]"
+    />
+    <div className="relative flex h-full flex-col justify-between p-4">
       <Logo />
       <div className="mb-4 flex flex-col gap-3">
         <Badge variant={'default'} className="h-6.5 font-semibold uppercase flex items-center gap-1">

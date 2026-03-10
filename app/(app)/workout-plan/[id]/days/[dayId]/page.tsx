@@ -4,7 +4,7 @@ import {
   getHomeData,
   getWorkoutDay,
 } from "@/app/_lib/api/fetch-generated"
-import dayjs from "dayjs"
+import { getTodayInUserTimezone } from "@/app/_lib/timezone"
 
 import { ExerciseCard } from "./_components/ExerciseCard"
 import { Topbar } from "./_components/Topbar"
@@ -27,9 +27,10 @@ interface PageProps {
 
 export default async function WorkoutDayPage({ params }: PageProps) {
   const { id: planId, dayId } = await params
+  const today = await getTodayInUserTimezone()
   const [workoutDayResponse, homeData] = await Promise.all([
     getWorkoutDay(planId, dayId),
-    getHomeData(dayjs().format("YYYY-MM-DD")),
+    getHomeData(today),
   ])
 
   if (workoutDayResponse.status !== 200) {
