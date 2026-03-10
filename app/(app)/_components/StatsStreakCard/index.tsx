@@ -22,6 +22,7 @@ export const StatsStreakCard = ({ count }: StatsStreakCardProps) => {
           fill
           sizes="(max-width: 768px) 100vw, 400px"
           className="object-cover object-center"
+          priority
         />
       )}
       <div
