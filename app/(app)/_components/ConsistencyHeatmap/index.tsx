@@ -52,8 +52,11 @@ export const ConsistencyHeatmap = ({
     months.push(today.subtract(i, 'month').startOf('month'))
   }
 
+  const cellSize = 'size-4 sm:size-4 md:size-5'
+  const gapSize = 'gap-0.5 sm:gap-1'
+
   return (
-    <div className="flex flex-row flex-wrap gap-6">
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-3 gap-y-4 ">
       {months.map((monthStart) => {
         const monthKey = monthStart.format('YYYY-MM')
         const monthLabel = MONTH_LABELS[monthStart.month() + 1]
@@ -78,37 +81,39 @@ export const ConsistencyHeatmap = ({
         }
 
         return (
-          <div key={monthKey} className="flex flex-col items-center gap-2">
-            <span className="text-xs font-medium text-muted-foreground">
+          <div key={monthKey} className="flex flex-col items-center gap-1 sm:gap-2 sm:p-3 rounded-lg bg-muted/30">
+            <span className="text-[10px] sm:text-xs font-medium text-muted-foreground">
               {monthLabel}
             </span>
-            <div className="flex gap-1 text-[10px] text-muted-foreground">
+            <div className={`flex ${gapSize} text-[8px] sm:text-[10px] text-muted-foreground`}>
               {WEEKDAY_LABELS.map((label, i) => (
                 <div
                   key={i}
-                  className="flex size-5 shrink-0 items-center justify-center"
+                  className={`flex ${cellSize} shrink-0 items-center justify-center`}
                 >
                   {label}
                 </div>
               ))}
             </div>
-            <div className="flex flex-col gap-1">
+            <div className={`flex flex-col ${gapSize}`}>
               {grid.map((row, rowIdx) => (
-                <div key={rowIdx} className="flex gap-1">
+                <div key={rowIdx} className={`flex ${gapSize}`}>
                   {row.map((dateKey, colIdx) => {
                     const state = dateKey
                       ? getCellState(consistencyByDay, dateKey)
-                      : 'none'
+                      : 'empty'
+                    const cellClass =
+                      state === 'empty'
+                        ? `${cellSize} shrink-0 rounded-sm bg-transparent`
+                        : state === 'completed'
+                          ? `${cellSize} shrink-0 rounded-sm ${CELL_COMPLETED}`
+                          : state === 'started'
+                            ? `${cellSize} shrink-0 rounded-sm ${CELL_STARTED}`
+                            : `${cellSize} shrink-0 rounded-sm ${CELL_NONE}`
                     return (
                       <div
                         key={`${rowIdx}-${colIdx}`}
-                        className={`size-5 shrink-0 rounded-sm ${
-                          state === 'completed'
-                            ? CELL_COMPLETED
-                            : state === 'started'
-                              ? CELL_STARTED
-                              : CELL_NONE
-                        }`}
+                        className={cellClass}
                         title={dateKey ?? ''}
                         aria-label={dateKey ?? 'empty'}
                       />

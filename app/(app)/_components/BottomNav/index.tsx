@@ -31,7 +31,7 @@ export const BottomNav = ({ todayWorkoutHref = null }: BottomNavProps) => {
     'chat_open',
     parseAsBoolean.withDefault(false),
   )
-  const isOnWorkoutDayPage = /^\/workout-plan\/[^/]+\/days\/[^/]+$/.test(pathname)
+  const isOnWorkoutDayPage = /^\/workout-plan\/[^/]+\/days\/[^/]+$/.test(pathname) || /^\/workout-plan\/[^/]+$/.test(pathname)
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-border rounded-t-2xl bg-background py-4">

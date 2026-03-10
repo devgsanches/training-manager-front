@@ -53,7 +53,7 @@ const HomePage = async () => {
             </Link>
           </div >
           <div className="flex items-center gap-3 h-24">
-            <div className="border border-border rounded-lg p-4 min-h-full max-w-72 md:max-w-xl lg:max-w-3xl xl:max-w-5xl w-full h-full">
+            <div className="border border-border rounded-lg p-2 min-h-full max-w-60 md:max-w-xl lg:max-w-3xl xl:max-w-5xl w-full h-full">
               <WeekConsistency
                 consistencyByDay={consistencyByDay}
                 currentDate={today}

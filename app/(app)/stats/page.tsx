@@ -44,7 +44,7 @@ const StatsPage = async () => {
           <h2 className="mb-3 font-heading text-xl font-semibold text-foreground">
             Consistência
           </h2>
-          <div className="rounded-xl bg-white p-4">
+          <div className="rounded-xl bg-white">
             <ConsistencyHeatmap
               consistencyByDay={data.consistencyByDay}
               currentDate={today.format('YYYY-MM-DD')}
