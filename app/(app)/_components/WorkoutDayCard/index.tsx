@@ -61,7 +61,6 @@ export const WorkoutDayCard = ({ workoutDay }: WorkoutDayCardProps) => {
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 400px"
-            priority
           />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center">
