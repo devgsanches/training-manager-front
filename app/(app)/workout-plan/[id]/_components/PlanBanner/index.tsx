@@ -14,6 +14,7 @@ export const PlanBanner = ({ name }: PlanBannerProps) => (
     <Image
       src="/plan-banner.png"
       alt=""
+      priority
       fill
       sizes="100vw"
       className="object-cover object-[center_65%]"
